@@ -1,11 +1,12 @@
+
 import os
 import pyotp
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 # Get token and user ID from environment variables (set these in Render)
-BOT_TOKEN = os.getenv("8141689574:AAEtWLGN0d9op2us3mHqOkldl5Cc-ndVIiM")
-ALLOWED_USER_ID = int(os.getenv("1106892490"))
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+ALLOWED_USER_ID = int(os.getenv("USER_ID"))
 
 # Handle /start command (optional)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -27,7 +28,7 @@ async def code(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(current_code)
     except Exception:
         await update.message.reply_text("Invalid secret")
-        
+
 # Start the bot
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
@@ -37,3 +38,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
